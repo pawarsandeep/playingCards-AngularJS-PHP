@@ -104,7 +104,19 @@ class Game {
    * @param mixed $cardStates
    */
   public function setCardStates($cardStates) {
-    $this->cardStates = $cardStates;
+    if (is_object($cardStates)) {
+      $cardStates = (array)$cardStates;
+      foreach ($cardStates as $k => $cardState) {
+        if (count($cardState) == 0)
+          continue;
+        foreach ($cardState as $state) {
+          $this->cardStates[$k][] = new CardState($state->id, Card::load($state->card->id), $state->index, $k);
+        }
+      }
+    }
+    else{
+      $this->cardStates = $cardStates;
+    }
   }
 
   public static function loadCompletedByUser($userId){
@@ -149,13 +161,43 @@ class Game {
   }
 
   public function saveGame(){
-    $query = "update game set completed = 1 where g_id = " . $this->gameId;
-    $result = Database::$connection->prepare($query)->execute();
-    if($result){
-      $query = 'delete * from card_state where game_id = ' . $this->gameId;
-      return TRUE;
+    $success = true;
+    if($this->isCompleted) {
+      $query = "update game set completed = 1 where g_id = " . $this->gameId;
+      $result = Database::$connection->prepare($query)->execute();
+      if ($result) {
+        $query = 'delete * from card_state where game_id = ' . $this->gameId;
+        return TRUE;
+      } else
+        return FALSE;
     }
-    else
-      return FALSE;
+    else{
+      foreach ($this->cardStates as $cardState){
+        if(count($cardState) == 0 )
+          continue;
+        foreach ($cardState as $state){
+          if (!$state->save($this->gameId)){
+            $success=false;
+            break;
+          }
+        }
+      }
+      return $success;
+    }
+  }
+
+  public static function loadById($gameId){
+    $queryParams = array(':gameId'=>$gameId);
+    $query = "select * from game where g_id = :gameId";
+    $game = NULL;
+    if (Database::$connection == NULL)
+      Database::getConnection();
+    $stmt = Database::$connection->prepare($query);
+    $result = $stmt->execute($queryParams);
+    if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)){
+      extract($row);
+      $game = new self($g_id, $start_time, $end_time, $completed);
+    }
+    return $game;
   }
 }

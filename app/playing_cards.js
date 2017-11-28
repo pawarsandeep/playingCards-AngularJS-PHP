@@ -48,7 +48,7 @@ app.controller('loginCtrl',['user', '$rootScope', '$location', function (user, $
     }
 }]);
 
-app.controller('playerCtrl', ['user', '$rootScope', function (user, $rootScope) {
+app.controller('playerCtrl', ['user', '$rootScope', '$scope', function (user, $rootScope, $scope) {
     var ctrl = this;
     ctrl.card_states = [];
     user.retriveGame().
@@ -76,15 +76,20 @@ app.controller('playerCtrl', ['user', '$rootScope', function (user, $rootScope) 
     ctrl.checkDraggedCardOnDiamonds = function (index, external, type, callback) {
         return callback() == 'diamonds';
     };
+    ctrl.isValid = function(card){
+        return card.hasOwnProperty('card');
+    }
     ctrl.saveGame = function () {
-        var a = 10;
+        // angular.forEach(ctrl.game.card_states.board , function (cardState, index) {
+        //     if (!cardState.hasOwnProperty('card')){
+        //         ctrl.game.card_states.board.splice(index, 1);
+        //     }
+        // });
+
+        var a = user.saveGame(ctrl.game);
     };
 
-}])
-
-app.controller('ctrl', function ($scope) {
-
-});
+}]);
 
 app.run(['$rootScope', '$location', '$http', function ($rootScope, $location, $http) {
     $rootScope.$on('$locationChangeStart', function (event, next, current) {

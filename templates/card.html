@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <div class="card-wrapper">
-    <div ng-if="!equals({}, card)">
+    <div ng-if="ctrl.isValid(card)">
         <img src={{card.card.imagePath}} class="card-img">
         <!--card: {{card.card.id}}-->
     </div>

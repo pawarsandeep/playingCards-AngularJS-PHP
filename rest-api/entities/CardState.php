@@ -90,6 +90,43 @@ class CardState
     $this->container = $container;
   }
 
+  public function save($gameId)
+  {
+    if($this->id == '') {
+      $queryParams = array(':cardId' => $this->card->getId(),
+        ':index' => $this->index,
+        ':container' => $this->container,
+        ':gameId' => $gameId);
+      $query = "insert into card_state (card_id, idx, container, game_id) values(:cardId, :index, :container, :gameId)";
+      if (Database::$connection == NULL)
+        Database::getConnection();
+      $stmt = Database::$connection->prepare($query);
+      $result = $stmt->execute($queryParams);
+      if ($result){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+    else{
+      $queryParams = array(':index' => $this->index,
+        ':container' => $this->container,
+        ':csId' => $this->id);
+      $query = "update card_state set idx = :index, container = :container where cs_id = :csId";
+      if (Database::$connection == NULL)
+        Database::getConnection();
+      $stmt = Database::$connection->prepare($query);
+      $result = $stmt->execute($queryParams);
+      if ($result){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+  }
+
   public static function loadAllByGameId($gameId){
     $cardStates = array();
     $cardStates['clubs'] = array();

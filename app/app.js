@@ -30,6 +30,15 @@ app.service('user',['$http', '$rootScope', function ($http, $rootScope) {
                     return response.data;
                 }
         })
-    }
+    };
+
+    user.saveGame = function(game){
+        return $http.post('/rest-api/save-game.php', game).
+            then(function (response) {
+                if(response.status == 200){
+                    console.log(response.data);
+                }
+        })
+    };
     return user;
 }])
