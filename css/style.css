@@ -1,7 +1,18 @@
-.card-container{
-    width: 7.5%;
+.board .card-container{
+    width: 7.1%;
     display: inline-block;
+    margin: 2px;
+
+}
+.card-holder .card-container{
+    margin-bottom: -150px;
+    width: 100px;
+
 }
 .card-img{
     width: 100%;
+    border: 1px solid gray;
+}
+.card-holder{
+    height: 230px;
 }

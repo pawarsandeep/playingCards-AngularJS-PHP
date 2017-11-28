@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f1e96fb-a3a1-458b-9834-b63354f391c9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rest-api/retrive-game.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/player.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.js" afterPath="$PROJECT_DIR$/app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/playing_cards.js" afterPath="$PROJECT_DIR$/app/playing_cards.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-api/config/Database.php" afterPath="$PROJECT_DIR$/rest-api/config/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-api/entities/Card.php" afterPath="$PROJECT_DIR$/rest-api/entities/Card.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-api/entities/CardState.php" afterPath="$PROJECT_DIR$/rest-api/entities/CardState.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-api/entities/Game.php" afterPath="$PROJECT_DIR$/rest-api/entities/Game.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-api/entities/User.php" afterPath="$PROJECT_DIR$/rest-api/entities/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-api/login.php" afterPath="$PROJECT_DIR$/rest-api/login.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/card.html" afterPath="$PROJECT_DIR$/templates/card.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/player.html" afterPath="$PROJECT_DIR$/templates/player.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,6 +23,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest-api/login.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -76,28 +79,28 @@
       <file leaf-file-name="playing_cards.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/playing_cards.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="81" column="4" lean-forward="true" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
+            <state relative-caret-position="53">
+              <caret line="68" column="6" lean-forward="false" selection-start-line="68" selection-start-column="6" selection-end-line="68" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="card.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="card.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/card.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+            <state relative-caret-position="102">
+              <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+            <state relative-caret-position="170">
+              <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -116,8 +119,8 @@
       <file leaf-file-name="player.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/player.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="54" lean-forward="false" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+            <state relative-caret-position="170">
+              <caret line="30" column="62" lean-forward="false" selection-start-line="30" selection-start-column="62" selection-end-line="30" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -126,12 +129,12 @@
       <file leaf-file-name="CardState.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest-api/entities/CardState.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="110" column="30" lean-forward="false" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
+            <state relative-caret-position="17">
+              <caret line="94" column="22" lean-forward="false" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
               <folding>
                 <element signature="e#7#93#0#PHP" expanded="true" />
-                <marker date="1511861633056" expanded="true" signature="1552:1631" ph="insert into game... " />
-                <marker date="1511861633056" expanded="true" signature="1552:1638" ph="select conta... card_state" />
+                <marker date="1511866728242" expanded="true" signature="1737:1816" ph="insert into game... " />
+                <marker date="1511866728242" expanded="true" signature="1737:1823" ph="select conta... card_state" />
               </folding>
             </state>
           </provider>
@@ -169,17 +172,17 @@
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/templates/player.js" />
         <option value="$PROJECT_DIR$/rest-api/retrive-game.php" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/rest-api/login.php" />
         <option value="$PROJECT_DIR$/rest-api/entities/User.php" />
         <option value="$PROJECT_DIR$/rest-api/entities/Game.php" />
         <option value="$PROJECT_DIR$/rest-api/entities/Card.php" />
-        <option value="$PROJECT_DIR$/app/playing_cards.js" />
         <option value="$PROJECT_DIR$/app/app.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/rest-api/entities/CardState.php" />
+        <option value="$PROJECT_DIR$/app/playing_cards.js" />
         <option value="$PROJECT_DIR$/templates/player.html" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/templates/card.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
       </list>
     </option>
   </component>
@@ -322,6 +325,20 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OCD-Playing Cards" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OCD-Playing Cards" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -431,7 +448,7 @@
       <updated>1511715019372</updated>
       <workItem from="1511715021725" duration="20429000" />
       <workItem from="1511767520120" duration="25236000" />
-      <workItem from="1511804193014" duration="33592000" />
+      <workItem from="1511804193014" duration="41626000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1511806176664</created>
@@ -444,7 +461,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79257000" />
+    <option name="totallyTimeSpent" value="87291000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -542,8 +559,8 @@
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="e#7#93#0#PHP" expanded="true" />
-            <marker date="1511861633056" expanded="true" signature="1552:1631" ph="insert into game... " />
-            <marker date="1511861633056" expanded="true" signature="1552:1638" ph="select conta... card_state" />
+            <marker date="1511866728242" expanded="true" signature="1737:1816" ph="insert into game... " />
+            <marker date="1511866728242" expanded="true" signature="1737:1823" ph="select conta... card_state" />
           </folding>
         </state>
       </provider>
@@ -628,8 +645,8 @@
           <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding>
             <element signature="e#7#93#0#PHP" expanded="true" />
-            <marker date="1511861633056" expanded="true" signature="1552:1631" ph="insert into game... " />
-            <marker date="1511861633056" expanded="true" signature="1552:1638" ph="select conta... card_state" />
+            <marker date="1511866728242" expanded="true" signature="1737:1816" ph="insert into game... " />
+            <marker date="1511866728242" expanded="true" signature="1737:1823" ph="select conta... card_state" />
           </folding>
         </state>
       </provider>
@@ -700,14 +717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest-api/entities/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -766,11 +775,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/player.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="54" lean-forward="false" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+        <state relative-caret-position="204">
+          <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-api/entities/CardState.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="94" column="22" lean-forward="false" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+          <folding>
+            <element signature="e#7#93#0#PHP" expanded="true" />
+            <marker date="1511866728242" expanded="true" signature="1737:1816" ph="insert into game... " />
+            <marker date="1511866728242" expanded="true" signature="1737:1823" ph="select conta... card_state" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -782,38 +803,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest-api/entities/CardState.php">
+    <entry file="file://$PROJECT_DIR$/app/playing_cards.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="110" column="30" lean-forward="false" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
-          <folding>
-            <element signature="e#7#93#0#PHP" expanded="true" />
-            <marker date="1511861633056" expanded="true" signature="1552:1631" ph="insert into game... " />
-            <marker date="1511861633056" expanded="true" signature="1552:1638" ph="select conta... card_state" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        <state relative-caret-position="53">
+          <caret line="68" column="6" lean-forward="false" selection-start-line="68" selection-start-column="6" selection-end-line="68" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/playing_cards.js">
+    <entry file="file://$PROJECT_DIR$/templates/player.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="81" column="4" lean-forward="true" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
+        <state relative-caret-position="170">
+          <caret line="30" column="62" lean-forward="false" selection-start-line="30" selection-start-column="62" selection-end-line="30" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/card.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+        <state relative-caret-position="102">
+          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding />
         </state>
       </provider>

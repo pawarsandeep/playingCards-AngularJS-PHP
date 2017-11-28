@@ -64,6 +64,21 @@ app.controller('playerCtrl', ['user', '$rootScope', function (user, $rootScope) 
         }
         var a=10;
     });
+    ctrl.checkDraggedCardOnSpades = function (index, external, type, callback) {
+        return callback() == 'spades';
+    };
+    ctrl.checkDraggedCardOnHearts = function (index, external, type, callback) {
+        return callback() == 'hearts';
+    };
+    ctrl.checkDraggedCardOnClubs = function (index, external, type, callback) {
+        return callback() == 'clubs';
+    };
+    ctrl.checkDraggedCardOnDiamonds = function (index, external, type, callback) {
+        return callback() == 'diamonds';
+    };
+    ctrl.saveGame = function () {
+        var a = 10;
+    };
 
 }])
 

@@ -92,6 +92,11 @@ class CardState
 
   public static function loadAllByGameId($gameId){
     $cardStates = array();
+    $cardStates['clubs'] = array();
+    $cardStates['hearts'] = array();
+    $cardStates['spades'] = array();
+    $cardStates['diamonds'] = array();
+    $cardStates['board'] = array();
     $queryParams = array(':gameId'=>$gameId);
     $query = "select container, cs_id, card_id, idx, game_id from card_state where game_id = :gameId";
     if (Database::$connection == NULL)

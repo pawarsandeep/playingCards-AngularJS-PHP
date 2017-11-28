@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <div class="card-wrapper">
-    <div ng-if="card.length != 0">
+    <div ng-if="!equals({}, card)">
         <img src={{card.card.imagePath}} class="card-img">
-        card: {{card.card.id}}
+        <!--card: {{card.card.id}}-->
     </div>
 </div>
