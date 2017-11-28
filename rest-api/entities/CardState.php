@@ -8,8 +8,8 @@
  */
 
 // Include user & card class.
-include_once '../entities/Card.php';
-include_once '../entities/Game.php';
+include_once 'Card.php';
+include_once 'Game.php';
 class CardState
 {
   // Properties
@@ -25,14 +25,12 @@ class CardState
    * @param $card
    * @param $index
    * @param $container
-   * @param $game
    */
   public function __construct($id, $card, $index, $container) {
     $this->id = $id;
     $this->card = $card;
     $this->index = $index;
     $this->container = $container;
-    $this->game = $game;
     $this->isNew = TRUE;
   }
 
@@ -94,14 +92,26 @@ class CardState
 
   public static function loadAllByGameId($gameId){
     $cardStates = array();
-    $query = "select * from card_state where game_id = " . $gameId;
-    $result = Database::$connection->prepare($query)->execute();
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)){
-      extract($row);
-      $cardStates[] = new self($cs_id,Card::load($card_id),$index, $container);
+    $queryParams = array(':gameId'=>$gameId);
+    $query = "select container, cs_id, card_id, idx, game_id from card_state where game_id = :gameId";
+    if (Database::$connection == NULL)
+      Database::getConnection();
+    $stmt = Database::$connection->prepare($query);
+    $result = $stmt->execute($queryParams);
+
+    if ($result && $stmt->rowCount() > 0){
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        extract($row);
+        $cardStates[$row['container']][] = new self($cs_id,Card::load($card_id),$idx, $container);
+      }
+    }
+    else{
+      $cards = Card::getAllCards();
+      foreach ($cards as $i=>$card){
+        $cardStates['board'][] = new self('', $card, $i, 'board');
+      }
     }
     return $cardStates;
   }
-
 
 }

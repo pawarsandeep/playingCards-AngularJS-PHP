@@ -6,7 +6,7 @@
  * Date: 11/27/2017
  * Time: 12:07 PM
  */
-include_once '../config/Database.php';
+require_once __DIR__.'\\..\\config\\Database.php';
 class Card
 {
   // Properties
@@ -71,20 +71,33 @@ class Card
   }
 
   public static function load($cardId){
-    $query = "select * from cards where c_id = " . $cardId;
-    $result = Database::$connection->prepare($query)->execute();
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-    extract($row);
-    return new self($c_id, $image_path, $suit);
+    $queryParams = array(':cardId'=>$cardId);
+    $query = "select * from cards where c_id = :cardId";
+    if (Database::$connection == NULL)
+      Database::getConnection();
+    $stmt = Database::$connection->prepare($query);
+    $result = $stmt->execute($queryParams);
+    if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      extract($row);
+      return new self($c_id, $image_path, $suit);
+    }
+    else {
+      return NULL;
+    }
   }
 
   public static function getAllCards(){
     $cards = array();
     $query = "select * from cards";
-    $result = Database::$connection->prepare($query)->execute();
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)){
-      extract($row);
-      $cards[] = new self($c_id, $image_path, $suit);
+    if (Database::$connection == NULL)
+      Database::getConnection();
+    $stmt = Database::$connection->prepare($query);
+    $result = $stmt->execute();
+    if($result) {
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $cards[] = new self($c_id, $image_path, $suit);
+      }
     }
     return $cards;
   }

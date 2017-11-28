@@ -16,12 +16,18 @@ include_once 'config/Database.php';
 include_once 'entities/User.php';
 
 $credentials = json_decode(file_get_contents('php://input'));
-$query = "select user_id from user where user_name = " . $credentials['username'] . " and password = " . $credentials['pass'];
-$result = Database::$connection->prepare($query)->execute();
+$queryParams = array(':username' => $credentials->username, ':password' => $credentials->password);
+$query = "select user_id from user where user_name = :username and password = :password";
+if (Database::$connection == NULL)
+  Database::getConnection();
+$stmt = Database::$connection->prepare($query);
+$result = $stmt->execute($queryParams);
 $response = array();
-if ($row = $result->fetch(PDO::FETCH_ASSOC))
+if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC))
 {
-  $response['user'] = User::Load($row['user_id']);
+  $user = User::Load($row['user_id']);
+  $response['user'] = array('user_id'=> $user->getUserId(), 'user_name'=>$user->getUserName(),
+    'email'=>$user->getEmail());
   $response['login'] = 'success';
 }
 else{

@@ -6,7 +6,7 @@
  * Date: 11/27/2017
  * Time: 12:26 PM
  */
-include_once '../config/Database.php';
+require_once __DIR__.'\\..\\config\\Database.php';
 include_once 'Game.php';
 class User extends Database
 {
@@ -89,19 +89,32 @@ class User extends Database
   }
 
   public static function Load($userId){
-    $query = "select * form user where user_id = " . $userId;
-    $result = Database::$connection->prepare($query)->execute();
-    $row = $result->fetch(PDO::FETCH_ASSOC);
-    extract($row);
-    return new self($user_id, $user_name, $email);
+    $queryParams = array(':userId' => $userId);
+    $query = "select * from user where user_id = :userId";
+    if (Database::$connection == NULL)
+      Database::getConnection();
+    $stmt = Database::$connection->prepare($query);
+    $result = $stmt->execute($queryParams);
+    if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)){
+      extract($row);
+      return new User($user_id, $user_name, $email);
+    }
+    else{
+      return FALSE;
+    }
   }
 
-  public function getAllGames(){
-    return Game::loadAllByUser($this->userId);
-  }
 
   public function getCompletedGames(){
+    return Game::loadCompletedByUser($this->userId);
+  }
+
+  public function getRunningGame(){
     return Game::loadRunningByUser($this->userId);
+  }
+
+  public function createNewGame(){
+    return Game::createNewGame($this->userId);
   }
 
 }

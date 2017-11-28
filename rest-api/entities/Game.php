@@ -6,7 +6,8 @@
  * Date: 27-11-2017
  * Time: 02:04 PM
  */
-include_once '../config/Database.php';
+require_once __DIR__.'\\..\\config\\Database.php';
+require_once 'CardState.php';
 class Game {
   private $gameId;
   private $startTime;
@@ -90,11 +91,12 @@ class Game {
    * @return mixed
    */
   public function getCardStates() {
+    if($this->isCompleted)
+      return NULL;
     if(isset($this->cardStates))
       return $this->cardStates;
     else{
-      $this->cardStates = CardState::loadAllByGameId($this->gameId);
-      return $this->cardStates();
+      return $this->cardStates = CardState::loadAllByGameId($this->gameId);
     }
   }
 
@@ -103,17 +105,6 @@ class Game {
    */
   public function setCardStates($cardStates) {
     $this->cardStates = $cardStates;
-  }
-
-  public static function loadAllByUser($userId){
-    $games = array();
-    $query = "select * from game where user_id = " . $userId;
-    $result = Database::$connection->prepare($query)->execute();
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)){
-      extract($row);
-      $games = new self($g_id, $start_time, $end_time, $completed);
-    }
-    return $games;
   }
 
   public static function loadCompletedByUser($userId){
@@ -128,17 +119,36 @@ class Game {
   }
 
   public static function loadRunningByUser($userId){
-    $games = array();
-    $query = "select * from game where user_id = " . $userId . " and completed = 0";
-    $result = Database::$connection->prepare($query)->execute();
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+    $queryParams = array(':userId'=>$userId);
+    $query = "select * from game where user_id = :userId";
+    $game = NULL;
+    if (Database::$connection == NULL)
+      Database::getConnection();
+    $stmt = Database::$connection->prepare($query);
+    $result = $stmt->execute($queryParams);
+    if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)){
       extract($row);
-      $games = new self($g_id, $start_time, $end_time, $completed);
+      $game = new self($g_id, $start_time, $end_time, $completed);
     }
-    return $games;
+    return $game;
   }
 
-  public function completeGame(){
+  public static function createNewGame($userId){
+    $queryParams = array(':userId'=>$userId, ':startTime'=>time(), ':endTime'=>'');
+    $query = "insert into game (user_id, start_time, end_time, completed) values (:userId, :startTime, :endTime, 0)";
+    if (Database::$connection == NULL)
+      Database::getConnection();
+    $stmt = Database::$connection->prepare($query);
+    $result = $stmt->execute($queryParams);
+    if ($result && $row = $stmt->fetch(PDO::FETCH_ASSOC)){
+      extract($row);
+      return new self($g_id, $start_time, $end_time, $completed);
+    }
+    else
+      return FALSE;
+  }
+
+  public function saveGame(){
     $query = "update game set completed = 1 where g_id = " . $this->gameId;
     $result = Database::$connection->prepare($query)->execute();
     if($result){

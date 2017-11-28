@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="col-sm-12">
+        <!--<div dnd-list="cardsOnBoard">-->
+        <div ng-repeat="card in ctrl.game.card_states.board"
+             ng-include="'/templates/card.html'"
+             dnd-draggable="card"
+             dnd-moved="ctrl.game.card_states.board[$index].length=0"
+             dnd-effect-allowed="move"
+             ng-class="selected" class="card-container">
+        </div>
+        <!--</div>-->
+        <div dnd-list="ctrl.game.card_states.spades">
+            Spade
+            <div ng-repeat="card in ctrl.game.card_states.spades"
+                 ng-include="'/templates/card.html'"
+                 dnd-draggable="card"
+                 dnd-moved="ctrl.game.card_states.board[$index].length=0"
+                 dnd-effect-allowed="move"
+                 ng-class="selected">
+            </div>
+        </div>
+        <div dnd-list="ctrl.game.card_states.diamonds">
+            Diamond
+            <div ng-repeat="card in ctrl.game.card_states.diamonds"
+                 ng-include="'/templates/card.html'"
+                 dnd-draggable="card"
+                 dnd-moved="ctrl.game.card_states.board[$index].length=0"
+                 dnd-effect-allowed="move"
+                 ng-class="selected"></div>
+        </div>
+        <div dnd-list="ctrl.game.card_states.clubs">
+            Club
+            <div ng-repeat="card in ctrl.game.card_states.clubs"
+                 ng-include="'/templates/card.html'"
+                 dnd-draggable="card"
+                 dnd-moved="ctrl.game.card_states.board[$index].length=0"
+                 dnd-effect-allowed="move"
+                 ng-class="selected">
+            </div>
+            <div dnd-list="ctrl.game.card_states.hearts">
+                Heart
+                <div ng-repeat="card in ctrl.game.card_states.hearts"
+                     ng-include="'/templates/card.html'"
+                     dnd-draggable="card"
+                     dnd-moved="ctrl.game.card_states.board[$index].length=0"
+                     dnd-effect-allowed="move"
+                     ng-class="selected">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

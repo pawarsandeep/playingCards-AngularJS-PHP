@@ -10,8 +10,8 @@ class Database
 {
   // Variable declarations
   private static $host = "localhost";
-  private static $port = "3306";
-  private static $dbName = "palying_cards";
+  private static $port = "33067";
+  private static $dbName = "playing_cards";
   private static $userName = "root";
   private static $password = "";
   public static $connection;

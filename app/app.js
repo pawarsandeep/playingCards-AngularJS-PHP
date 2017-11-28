@@ -9,7 +9,7 @@ app.service('game', ['$http', function ($http) {
 
 }]);
 
-app.service('user',['$http', function ($http) {
+app.service('user',['$http', '$rootScope', function ($http, $rootScope) {
     var user = {};
     user.account = {};
     sync: user.login = function (credentials) {
@@ -17,11 +17,19 @@ app.service('user',['$http', function ($http) {
         then(function (response) {
             if(response.status == 200){
                 console.log(response.data);
+                return response;
             }
+        })
+    }
+
+    user.retriveGame = function () {
+        return $http.post('/rest-api/retrive-game.php', $rootScope.currentUser.user_id).
+            then(function (response) {
+                if (response.status==200){
+                    console.log(response.data);
+                    return response.data;
+                }
         })
     }
     return user;
 }])
-
-
-

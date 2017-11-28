@@ -1,4 +1,5 @@
 <div class="wrapper">
+    <div ng-show="ctrl.error" class="alert alert-danger">{{ctrl.error}}</div>
     <form class="form-signin" ng-submit="ctrl.login()">
         <h2 class="form-signin-heading">Please login</h2>
         <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" ng-model="ctrl.username" />
