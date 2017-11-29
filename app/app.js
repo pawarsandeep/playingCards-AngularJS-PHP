@@ -4,11 +4,6 @@
 
 var app = angular.module('pcHelper',['dndLists', 'ngRoute', 'ngCookies']);
 
-
-app.service('game', ['$http', function ($http) {
-
-}]);
-
 app.service('user',['$http', '$rootScope', function ($http, $rootScope) {
     var user = {};
     user.account = {};

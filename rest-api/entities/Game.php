@@ -8,6 +8,10 @@
  */
 require_once __DIR__.'\\..\\config\\Database.php';
 require_once 'CardState.php';
+
+/**
+ * Class Game
+ */
 class Game {
   private $gameId;
   private $startTime;
@@ -119,6 +123,10 @@ class Game {
     }
   }
 
+  /**
+   * @param $userId
+   * @return array|Game
+   */
   public static function loadCompletedByUser($userId){
     $games = array();
     $query = "select * from game where user_id = " . $userId . " and completed = 1";
@@ -130,6 +138,10 @@ class Game {
     return $games;
   }
 
+  /**
+   * @param $userId
+   * @return Game|null
+   */
   public static function loadRunningByUser($userId){
     $queryParams = array(':userId'=>$userId);
     $query = "select * from game where user_id = :userId and completed <> 1";
@@ -145,6 +157,10 @@ class Game {
     return $game;
   }
 
+  /**
+   * @param $userId
+   * @return bool|Game|null
+   */
   public static function createNewGame($userId){
     $queryParams = array(':userId'=>$userId, ':startTime'=>date("Y-m-d H:i:s"), ':endTime'=>'');
     $query = "insert into game (user_id, start_time, end_time, completed) values (:userId, :startTime, :endTime, 0)";
@@ -160,6 +176,9 @@ class Game {
       return FALSE;
   }
 
+  /**
+   * @return bool
+   */
   public function saveGame(){
     $success = true;
     if($this->isCompleted) {
@@ -185,6 +204,10 @@ class Game {
     }
   }
 
+  /**
+   * @param $gameId
+   * @return Game|null
+   */
   public static function loadById($gameId){
     $queryParams = array(':gameId'=>$gameId);
     $query = "select * from game where g_id = :gameId";

@@ -7,6 +7,10 @@
  * Time: 12:07 PM
  */
 require_once __DIR__.'\\..\\config\\Database.php';
+
+/**
+ * Class Card
+ */
 class Card
 {
   // Properties
@@ -70,6 +74,10 @@ class Card
     $this->suit = $suit;
   }
 
+  /**
+   * @param $cardId
+   * @return Card|null
+   */
   public static function load($cardId){
     $queryParams = array(':cardId'=>$cardId);
     $query = "select * from cards where c_id = :cardId";
@@ -86,6 +94,9 @@ class Card
     }
   }
 
+  /**
+   * @return array
+   */
   public static function getAllCards(){
     $cards = array();
     $query = "select * from cards";

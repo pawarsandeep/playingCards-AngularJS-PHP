@@ -8,6 +8,10 @@
  */
 require_once __DIR__.'\\..\\config\\Database.php';
 include_once 'Game.php';
+
+/**
+ * Class User
+ */
 class User extends Database
 {
   // Properties
@@ -88,6 +92,10 @@ class User extends Database
     $this->games = $games;
   }
 
+  /**
+   * @param $userId
+   * @return bool|User
+   */
   public static function Load($userId){
     $queryParams = array(':userId' => $userId);
     $query = "select * from user where user_id = :userId";
@@ -105,14 +113,23 @@ class User extends Database
   }
 
 
+  /**
+   * @return array|Game
+   */
   public function getCompletedGames(){
     return Game::loadCompletedByUser($this->userId);
   }
 
+  /**
+   * @return Game|null
+   */
   public function getRunningGame(){
     return Game::loadRunningByUser($this->userId);
   }
 
+  /**
+   * @return bool|Game|null
+   */
   public function createNewGame(){
     return Game::createNewGame($this->userId);
   }

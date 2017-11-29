@@ -26,13 +26,6 @@ if (isset($gameToSave->isCompleted) && $gameToSave->isCompleted == true)
     echo json_encode('failed');
 }
 else {
-//  $gameToSave->card_states->board = array_filter($gameToSave->card_states->board, function($v) use ($gameToSave->card_states->board) {
-//    if (isset($v->length)) {
-//      if ($v->length == 0)
-//        return false;
-//    }
-//    return true;
-//  });
   foreach ($gameToSave->card_states->board as $i => $cardState){
     if (isset($cardState->length) && $cardState->length==0){
       unset($gameToSave->card_states->board[$i]);

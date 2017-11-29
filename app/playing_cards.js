@@ -62,7 +62,6 @@ app.controller('playerCtrl', ['user', '$rootScope', '$scope', '$filter', functio
             // ctrl.clubContainer = [];
             // ctrl.heartContainer = [];
         }
-        var a=10;
     });
     ctrl.checkDraggedCardOnSpades = function (index, external, type, callback) {
         return callback() == 'spades';

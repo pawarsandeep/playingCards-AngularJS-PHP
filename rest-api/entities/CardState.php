@@ -10,6 +10,10 @@
 // Include user & card class.
 include_once 'Card.php';
 include_once 'Game.php';
+
+/**
+ * Class CardState
+ */
 class CardState
 {
   // Properties
@@ -92,6 +96,10 @@ class CardState
     $this->container = $container;
   }
 
+  /**
+   * @param $gameId
+   * @return bool
+   */
   public function save($gameId)
   {
     if($this->id == '') {
@@ -132,6 +140,10 @@ class CardState
     }
   }
 
+  /**
+   * @param $gameId
+   * @return array
+   */
   public static function loadAllByGameId($gameId){
     $cardStates = array();
     $cardStates['clubs'] = array();

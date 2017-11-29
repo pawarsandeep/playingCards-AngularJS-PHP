@@ -1,5 +1,5 @@
 **Softwares Used**
-1. Apache
+1. Apache (PHP)
 2. Mysql
 3. Windows 10 (Files are included by considering widows file system)
 
