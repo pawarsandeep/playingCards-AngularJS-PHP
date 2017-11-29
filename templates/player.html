@@ -1,11 +1,15 @@
-<div class="palyer-wrapper">
-    <div ng-click="ctrl.saveGame()">Save</div>
+<script src="../app/playing_cards.js"></script>
+<div class="player-wrapper">
+    <div class="controls">
+        <div ng-click="ctrl.saveGame()" class="btn btn-success">Save</div>
+        <div ng-click="ctrl.restartGame()" class="btn btn-primary" ng-if="ctrl.game.isCompleted">Restart</div>
+    </div>
     <div class="col-sm-12">
         <!--<div dnd-list="cardsOnBoard">-->
         <div class="col-sm-2">
             <div dnd-list="ctrl.game.card_states.spades" class="card-holder" dnd-dragover="ctrl.checkDraggedCardOnSpades(index, external, type, callback)">
                 Spade
-                <div ng-repeat="card in ctrl.game.card_states.spades"
+                <div ng-repeat="card in ctrl.game.card_states.spades | orderBy:indexContainer"
                      ng-include="'/templates/card.html'"
                      dnd-draggable="card"
                      dnd-moved="ctrl.game.card_states.board[$index].length=0"
@@ -16,7 +20,7 @@
 
             <div dnd-list="ctrl.game.card_states.diamonds" class="card-holder" dnd-dragover="ctrl.checkDraggedCardOnDiamonds(index, external, type, callback)">
                 Diamond
-                <div ng-repeat="card in ctrl.game.card_states.diamonds"
+                <div ng-repeat="card in ctrl.game.card_states.diamonds | orderBy:indexContainer"
                      ng-include="'/templates/card.html'"
                      dnd-draggable="card"
                      dnd-moved="ctrl.game.card_states.board[$index].length=0"
@@ -25,10 +29,10 @@
             </div>
         </div>
         <div class="col-sm-8 board">
-        <div ng-repeat="card in ctrl.game.card_states.board"
+        <div ng-repeat="card in ctrl.game.card_states.board | orderBy:'indexBoard'"
              ng-include="'/templates/card.html'"
              dnd-draggable="card"
-             dnd-moved="ctrl.game.card_states.board[$index]={}"
+             dnd-moved="ctrl.removeCardFromBoard($index)"
              dnd-effect-allowed="move"
              dnd-callback="card.card.suit"
              ng-class="selected" class="card-container">
@@ -48,7 +52,7 @@
             </div>
             <div dnd-list="ctrl.game.card_states.hearts" class="card-holder" dnd-dragover="ctrl.checkDraggedCardOnHearts(index, external, type, callback)">
                 Heart
-                <div ng-repeat="card in ctrl.game.card_states.hearts"
+                <div ng-repeat="card in ctrl.game.card_states.hearts | orderBy:indexContainer"
                      ng-include="'/templates/card.html'"
                      dnd-draggable="card"
                      dnd-moved="ctrl.game.card_states.board[$index].length=0"

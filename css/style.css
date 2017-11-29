@@ -9,10 +9,24 @@
     width: 100px;
 
 }
+.player-wrapper .controls{
+    text-align: center;
+}
 .card-img{
     width: 100%;
     border: 1px solid gray;
 }
 .card-holder{
     height: 230px;
+}
+.login-wrapper{
+    text-align: center;
+    width: 40%;
+}
+.login-wrapper input{
+    margin: 8px;
+}
+.login-wrapper button{
+    width: 100px;
+    margin: 8px;
 }

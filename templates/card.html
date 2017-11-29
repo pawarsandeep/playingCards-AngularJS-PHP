@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <div class="card-wrapper">
-    <div ng-if="ctrl.isValid(card)">
+    <div ng-if="card.length != 0">
         <img src={{card.card.imagePath}} class="card-img">
+        {{card.length}}
         <!--card: {{card.card.id}}-->
     </div>
 </div>

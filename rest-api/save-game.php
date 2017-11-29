@@ -17,9 +17,30 @@ include_once 'entities/Game.php';
 include_once 'entities/CardState.php';
 $gameToSave = json_decode(file_get_contents('php://input'));
 $game = Game::loadById($gameToSave->game_id);
-$gameToSave->card_states->board = array_filter($gameToSave->card_states->board, function ($v, $k){
-  return isset($v->card);
-});
-$game->setCardStates($gameToSave->card_states);
-$game->saveGame();
-$a = 10;
+if (isset($gameToSave->isCompleted) && $gameToSave->isCompleted == true)
+{
+  $game->setIsCompleted(true);
+  if($game->saveGame())
+    echo json_encode('success');
+  else
+    echo json_encode('failed');
+}
+else {
+//  $gameToSave->card_states->board = array_filter($gameToSave->card_states->board, function($v) use ($gameToSave->card_states->board) {
+//    if (isset($v->length)) {
+//      if ($v->length == 0)
+//        return false;
+//    }
+//    return true;
+//  });
+  foreach ($gameToSave->card_states->board as $i => $cardState){
+    if (isset($cardState->length) && $cardState->length==0){
+      unset($gameToSave->card_states->board[$i]);
+    }
+  }
+  $game->setCardStates($gameToSave->card_states);
+  if ($game->saveGame())
+    echo json_encode('success');
+  else
+    echo json_encode('failed');
+}

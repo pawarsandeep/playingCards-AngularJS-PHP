@@ -48,7 +48,7 @@ app.controller('loginCtrl',['user', '$rootScope', '$location', function (user, $
     }
 }]);
 
-app.controller('playerCtrl', ['user', '$rootScope', '$scope', function (user, $rootScope, $scope) {
+app.controller('playerCtrl', ['user', '$rootScope', '$scope', '$filter', function (user, $rootScope, $scope, $filter) {
     var ctrl = this;
     ctrl.card_states = [];
     user.retriveGame().
@@ -76,9 +76,28 @@ app.controller('playerCtrl', ['user', '$rootScope', '$scope', function (user, $r
     ctrl.checkDraggedCardOnDiamonds = function (index, external, type, callback) {
         return callback() == 'diamonds';
     };
-    ctrl.isValid = function(card){
-        return card.hasOwnProperty('card');
+    ctrl.removeCardFromBoard = function (boardIndex) {
+        var card = $filter('filter')(ctrl.game.card_states.board, {indexBoard: boardIndex}, true);
+        var index = ctrl.game.card_states.board.indexOf(card[0]);
+        ctrl.game.card_states.board[index].length=0;
+        var cardsMoved = $filter('filter')(ctrl.game.card_states.board, {length: 0}, true);
+        if (cardsMoved.length == 52){
+            ctrl.game.isCompleted = true;
+            ctrl.saveGame();
+            ctrl.game.idle = true;
+        }
     }
+
+    ctrl.restartGame = function () {
+        user.retriveGame().
+        then(function (response) {
+            ctrl.game = response;
+            if (response.length != 0){
+                ctrl.game = response;
+            }
+        });
+    }
+    
     ctrl.saveGame = function () {
         // angular.forEach(ctrl.game.card_states.board , function (cardState, index) {
         //     if (!cardState.hasOwnProperty('card')){
@@ -86,7 +105,7 @@ app.controller('playerCtrl', ['user', '$rootScope', '$scope', function (user, $r
         //     }
         // });
 
-        var a = user.saveGame(ctrl.game);
+        user.saveGame(ctrl.game);
     };
 
 }]);

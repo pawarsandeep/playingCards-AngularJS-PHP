@@ -15,7 +15,8 @@ class CardState
   // Properties
   public $id;
   public $card;
-  public $index;
+  public $indexContainer;
+  public $indexBoard;
   public $container;
   private $isNew = FALSE;
 
@@ -26,10 +27,11 @@ class CardState
    * @param $index
    * @param $container
    */
-  public function __construct($id, $card, $index, $container) {
+  public function __construct($id, $card, $indexC, $indexB, $container) {
     $this->id = $id;
     $this->card = $card;
-    $this->index = $index;
+    $this->indexContainer = $indexC;
+    $this->indexBoard = $indexB;
     $this->container = $container;
     $this->isNew = TRUE;
   }
@@ -94,10 +96,11 @@ class CardState
   {
     if($this->id == '') {
       $queryParams = array(':cardId' => $this->card->getId(),
-        ':index' => $this->index,
+        ':indexC' => $this->indexContainer,
+        ':indexB' => $this->indexBoard,
         ':container' => $this->container,
         ':gameId' => $gameId);
-      $query = "insert into card_state (card_id, idx, container, game_id) values(:cardId, :index, :container, :gameId)";
+      $query = "insert into card_state (card_id, idx_container, idx_board, container, game_id) values(:cardId, :indexC, :indexB, :container, :gameId)";
       if (Database::$connection == NULL)
         Database::getConnection();
       $stmt = Database::$connection->prepare($query);
@@ -110,14 +113,16 @@ class CardState
       }
     }
     else{
-      $queryParams = array(':index' => $this->index,
+      $queryParams = array(':indexC' => $this->indexContainer,
+        ':indexB' => $this->indexBoard,
         ':container' => $this->container,
         ':csId' => $this->id);
-      $query = "update card_state set idx = :index, container = :container where cs_id = :csId";
+      $query = "update card_state set idx_container = :indexC, idx_board = :indexB, container = :container where cs_id = :csId";
       if (Database::$connection == NULL)
         Database::getConnection();
       $stmt = Database::$connection->prepare($query);
       $result = $stmt->execute($queryParams);
+      $err = $stmt->errorInfo();
       if ($result){
         return true;
       }
@@ -135,7 +140,7 @@ class CardState
     $cardStates['diamonds'] = array();
     $cardStates['board'] = array();
     $queryParams = array(':gameId'=>$gameId);
-    $query = "select container, cs_id, card_id, idx, game_id from card_state where game_id = :gameId";
+    $query = "select container, cs_id, card_id, idx_container, idx_board, game_id from card_state where game_id = :gameId";
     if (Database::$connection == NULL)
       Database::getConnection();
     $stmt = Database::$connection->prepare($query);
@@ -144,16 +149,23 @@ class CardState
     if ($result && $stmt->rowCount() > 0){
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $cardStates[$row['container']][] = new self($cs_id,Card::load($card_id),$idx, $container);
+        $state = new self($cs_id,Card::load($card_id),$idx_container, $idx_board, $container);
+        $cardStates[$row['container']][] = $state;
+        if ($row['container'] != 'board'){
+          $s = clone $state;
+          $s->length = 0;
+          $cardStates['board'][] = $s;
+        }
       }
     }
     else{
       $cards = Card::getAllCards();
+      $boardIndex = range(0,51);
+      shuffle($boardIndex);
       foreach ($cards as $i=>$card){
-        $cardStates['board'][] = new self('', $card, $i, 'board');
+        $cardStates['board'][] = new self('', $card, 0,$boardIndex[$i], 'board');
       }
     }
     return $cardStates;
   }
-
 }

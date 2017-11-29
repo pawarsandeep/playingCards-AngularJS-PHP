@@ -24,4 +24,4 @@ if ($game == NULL){
 $response = array();
 $response['game_id'] = $game->getGameId();
 $response['card_states'] = $game->getCardStates();
-echo json_encode($response);
+echo json_encode($response, JSON_NUMERIC_CHECK);

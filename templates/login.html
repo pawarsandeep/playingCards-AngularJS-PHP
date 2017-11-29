@@ -1,8 +1,8 @@
-<div class="wrapper">
+<div class="login-wrapper center-block">
     <div ng-show="ctrl.error" class="alert alert-danger">{{ctrl.error}}</div>
     <form class="form-signin" ng-submit="ctrl.login()">
         <h2 class="form-signin-heading">Please login</h2>
-        <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" ng-model="ctrl.username" />
+        <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" ng-model="ctrl.username" />
         <input type="password" class="form-control" name="password" placeholder="Password" required="" ng-model="ctrl.password"/>
         <!--<label class="checkbox">-->
             <!--<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me-->
